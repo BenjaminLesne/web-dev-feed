@@ -6,7 +6,9 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "db:migration:generate": "npx drizzle-kit generate",
-    "db:migration:migrate": "npx drizzle-kit migrate"
+    "db:migration:migrate": "npx drizzle-kit migrate",
+    "server:start": "tsx --env-file=.env ./src/server",
+    "server:watch": "tsx watch --env-file=.env  ./src/server"
   },
   "dependencies": {
     "@libsql/client": "^0.14.0",
