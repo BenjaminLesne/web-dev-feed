@@ -1,0 +1,17 @@
+{
+  "extends": "@tsconfig/node22/tsconfig.json",
+  "compilerOptions": {
+    "removeComments": true,
+    // "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noImplicitAny": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "checkJs": true
+  },
+  "include": [".eslintrc.cjs", "**/*.ts", "**/*.cjs", "**/*.js"],
+  "exclude": ["node_modules"]
+}
