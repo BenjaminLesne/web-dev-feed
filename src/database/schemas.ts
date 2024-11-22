@@ -4,4 +4,5 @@ export const usersTable = sqliteTable("posts", {
   id: int().primaryKey({ autoIncrement: true }),
   uri: text().notNull().unique(),
   interestScore: int().notNull(),
+  createdAt: int({ mode: "timestamp" }),
 });
