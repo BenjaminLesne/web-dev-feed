@@ -1,5 +1,5 @@
-import { eq, sql } from "drizzle-orm";
-import { db } from "./index.js";
+import { eq, lt, sql } from "drizzle-orm";
+import { db } from "./database.js";
 import { postsTable } from "./schemas.js";
 
 type UpdateInterestArgs = {
@@ -26,4 +26,25 @@ export async function createPost({ interestScore, uri }: CreatePostArgs) {
     interestScore,
     uri,
   });
+}
+
+export async function deleteLast48hoursPosts() {
+  const today = new Date();
+  const twoDaysAgo = new Date(today.setDate(today.getDate() - 2));
+
+  try {
+    await db.delete(postsTable).where(lt(postsTable.createdAt, twoDaysAgo));
+    console.log("All posts older than 48 hours have been deleted");
+  } catch (error) {
+    console.error("Error deleting rows:", error);
+  }
+}
+
+export async function deleteAllPosts() {
+  try {
+    await db.delete(postsTable);
+    console.log("All rows deleted from the posts table.");
+  } catch (error) {
+    console.error("Error deleting rows:", error);
+  }
 }

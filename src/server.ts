@@ -2,7 +2,7 @@ import express from "express";
 import { env } from "./env.js";
 import "./data-pipeline/getTheJuice.js";
 import { jetstream } from "./data-pipeline/getTheJuice.js";
-import { db } from "./database/index.js";
+import { db } from "./database/database.js";
 import { postsTable } from "./database/schemas.js";
 import { desc } from "drizzle-orm";
 import { garbageCollectExpiredPostsJob } from "./cron/jobs.js";
