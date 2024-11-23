@@ -5,11 +5,3 @@ export const WANTED_COLLECTIONS = [
   "app.bsky.feed.like" as const,
   "app.bsky.feed.repost" as const,
 ];
-
-// handle,
-// password,
-// recordName,
-// displayName,
-// description,
-// avatar,
-// service,
