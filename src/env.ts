@@ -10,6 +10,7 @@ const EnvSchema = z.object({
   API_URL: z.string({ message }).url(),
   FEED_NAME: z.string({ message }).min(1),
   APP_PASSWORD: z.string().min(1),
+  NODE_ENV: z.enum(["production", "development"]),
 });
 
 export const env = EnvSchema.parse(process.env);

@@ -10,6 +10,7 @@
     "db:migration:migrate": "npx drizzle-kit migrate",
     "db:delete:posts": "tsx --env-file=.env ./scripts/deleteAllPosts.ts",
     "start": "tsx --env-file=.env ./src/server",
+    "start:prod": "tsx --env-file=production.env ./src/server",
     "start:watch": "tsx watch --env-file=.env  ./src/server",
     "publish:staging": "tsx --env-file=.env ./scripts/publishFeedGen.ts"
   },
