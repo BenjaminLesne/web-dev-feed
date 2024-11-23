@@ -5,11 +5,13 @@ import { jetstream } from "./data-pipeline/getTheJuice.js";
 import { db } from "./database/index.js";
 import { postsTable } from "./database/schemas.js";
 import { desc } from "drizzle-orm";
+import { garbageCollectExpiredPostsJob } from "./cron/jobs.js";
 
 const app = express();
 const port = env.SERVER_PORT;
 
 jetstream.start();
+garbageCollectExpiredPostsJob.start();
 
 app.get("/health", (req, res) => {
   res.send("Hello world");

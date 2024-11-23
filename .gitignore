@@ -1,3 +1,5 @@
+*.db
+local.db
 # Logs
 logs
 *.log
