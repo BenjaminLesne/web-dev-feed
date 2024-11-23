@@ -8,9 +8,10 @@
     "typecheck": "tsc --noEmit",
     "db:migration:generate": "npx drizzle-kit generate",
     "db:migration:migrate": "npx drizzle-kit migrate",
+    "db:delete:posts": "tsx --env-file=.env ./scripts/deleteAllPosts.ts",
     "start": "tsx --env-file=.env ./src/server",
     "start:watch": "tsx watch --env-file=.env  ./src/server",
-    "publish:staging": "tsx --env-file=.env ./scripts/publishFeedGen-v2.ts"
+    "publish:staging": "tsx --env-file=.env ./scripts/publishFeedGen.ts"
   },
   "dependencies": {
     "@atproto/api": "^0.13.17",

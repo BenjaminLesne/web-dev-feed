@@ -1,18 +1,18 @@
 const WEB_DEV_KEYWORDS = {
   trusted: new Set([
-    "HTML",
     "CSS",
+    "JS",
     "JavaScript",
-    "React",
+    "React.js",
+    "Reactjs",
     "Next.js",
     "Node.js",
     "Nextjs",
     "Nodejs",
     "GraphQL",
-    "REST",
     "Webpack",
     "TypeScript",
-    "Tailwind CSS",
+    "Tailwind",
     "MongoDB",
     "AWS",
     "SSR",
@@ -20,6 +20,7 @@ const WEB_DEV_KEYWORDS = {
   ]),
   notSure: new Set([
     [
+      "HTML",
       "Code",
       "Script",
       "Compile",

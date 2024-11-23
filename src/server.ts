@@ -1,8 +1,15 @@
 import express from "express";
 import { env } from "./env.js";
+import "./data-pipeline/getTheJuice.js";
+import { jetstream, startJetstream } from "./data-pipeline/getTheJuice.js";
+import { db } from "./database/index.js";
+import { postsTable } from "./database/schemas.js";
+import { desc } from "drizzle-orm";
 
 const app = express();
 const port = env.SERVER_PORT;
+
+jetstream.start();
 
 app.get("/.well-known/did.json", (req, res) => {
   res.json({
@@ -29,31 +36,43 @@ app.get("/xrpc/app.bsky.feed.describeFeedGenerator", (req, res) => {
   });
 });
 
-app.get("/xrpc/app.bsky.feed.getFeedSkeleton", (req, res) => {
+app.get("/xrpc/app.bsky.feed.getFeedSkeleton", async (req, res) => {
+  const feed = await db
+    .select({
+      post: postsTable.uri,
+    })
+    .from(postsTable)
+    .orderBy(desc(postsTable.interestScore))
+    .limit(10);
+
   res.json({
-    feed: [
-      {
-        post: "at://did:plc:2ouk4ptm336l2lcce6qxs3ar/app.bsky.feed.post/3kaoxdbnvwv2y",
-      },
-      {
-        post: "at://did:plc:y5zzasijmapifytqvhxnwsrm/app.bsky.feed.post/3kaoxbtnw7n2x",
-      },
-      {
-        post: "at://did:plc:jqdbfqiyyne7jkxpqlfacray/app.bsky.feed.post/3kaoxal4n3n2m",
-      },
-      {
-        post: "at://did:plc:hlxobkvuv64wghyltgbgz6f3/app.bsky.feed.post/3kaoxafag2y2s",
-      },
-      {
-        post: "at://did:plc:b66g2f6utk25ppjzsujhhqgt/app.bsky.feed.post/3kaox5gojov2q",
-      },
-    ],
-    cursor: "2482",
+    feed,
   });
+
+  // res.json({
+  //   feed: [
+  //     {
+  //       post: "at://did:plc:2ouk4ptm336l2lcce6qxs3ar/app.bsky.feed.post/3kaoxdbnvwv2y",
+  //     },
+  //     {
+  //       post: "at://did:plc:y5zzasijmapifytqvhxnwsrm/app.bsky.feed.post/3kaoxbtnw7n2x",
+  //     },
+  //     {
+  //       post: "at://did:plc:jqdbfqiyyne7jkxpqlfacray/app.bsky.feed.post/3kaoxal4n3n2m",
+  //     },
+  //     {
+  //       post: "at://did:plc:hlxobkvuv64wghyltgbgz6f3/app.bsky.feed.post/3kaoxafag2y2s",
+  //     },
+  //     {
+  //       post: "at://did:plc:b66g2f6utk25ppjzsujhhqgt/app.bsky.feed.post/3kaox5gojov2q",
+  //     },
+  //   ],
+  //   cursor: "2482",
+  // });
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Feed app listening on port ${port}`);
 });
 
 // app.get("client-metadata.json", (req, res) => {

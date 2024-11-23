@@ -16,3 +16,14 @@ export async function updateInterest({ type, uri }: UpdateInterestArgs) {
     })
     .where(eq(postsTable.uri, uri));
 }
+
+type CreatePostArgs = {
+  uri: string;
+  interestScore: number;
+};
+export async function createPost({ interestScore, uri }: CreatePostArgs) {
+  await db.insert(postsTable).values({
+    interestScore,
+    uri,
+  });
+}

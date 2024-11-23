@@ -23,10 +23,10 @@ export function standardAlgo({ record }: StandardAlgoArgs) {
       const isAboutWebdev = KEYWORDS_REGEX.trusted.test(record.text);
       if (isAboutWebdev) {
         score = score + 1;
-      }
 
-      if (record.embed) {
-        score = score + 1;
+        if (record.embed) {
+          score = score + 1;
+        }
       }
 
       break;
