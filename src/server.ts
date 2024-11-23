@@ -11,6 +11,10 @@ const port = env.SERVER_PORT;
 
 jetstream.start();
 
+app.get("/health", (req, res) => {
+  res.send("Hello world");
+});
+
 app.get("/.well-known/did.json", (req, res) => {
   res.json({
     "@context": ["https://www.w3.org/ns/did/v1"],
