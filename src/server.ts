@@ -1,8 +1,5 @@
 import express from "express";
-import { env } from "./env";
-// import { client } from "../scripts/publishFeedGen-v2";
-import { HANDLE } from "./lib/contants";
-import { Agent } from "@atproto/api";
+import { env } from "./env.js";
 
 const app = express();
 const port = env.SERVER_PORT;
@@ -55,6 +52,10 @@ app.get("/xrpc/app.bsky.feed.getFeedSkeleton", (req, res) => {
   });
 });
 
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
+
 // app.get("client-metadata.json", (req, res) => {
 //   res.json(client.clientMetadata);
 // });
@@ -105,10 +106,6 @@ app.get("/xrpc/app.bsky.feed.getFeedSkeleton", (req, res) => {
 //     next(err);
 //   }
 // });
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
 
 // import { createServer } from "http";
 // import { env } from "./env";

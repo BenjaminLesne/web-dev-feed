@@ -2,13 +2,6 @@ import type { CommitCreate } from "@skyware/jetstream";
 import type { WantedCollection } from "../../lib/types.js";
 import { BLACKLIST, KEYWORDS_REGEX } from "./constants.js";
 
-type CheckTrustedKeywordsArgs = {
-  text: string;
-};
-function checkTrustedKeywords({ text }) {
-  const isAboutWebdev = KEYWORDS_REGEX.trusted.test(text);
-}
-
 type StandardAlgoArgs = {
   record: CommitCreate<WantedCollection>["record"];
 };
