@@ -2,9 +2,11 @@ import { Jetstream } from "@skyware/jetstream";
 import { WANTED_COLLECTIONS } from "../lib/contants.js";
 import { createPost, updateInterest } from "../database/queries.js";
 import { standardAlgo } from "../algos/standard/standard.js";
+import WebSocket from "ws";
 
 export const jetstream = new Jetstream({
   wantedCollections: WANTED_COLLECTIONS,
+  ws: WebSocket,
 });
 
 jetstream.onCreate("app.bsky.feed.post", async (event) => {
