@@ -9,10 +9,10 @@
     "db:migration:generate": "npx drizzle-kit generate",
     "db:migration:migrate": "NODE_OPTIONS='--import tsx' drizzle-kit migrate",
     "start": "tsx --env-file=.env ./src/server",
-    "start:prod": "tsx --env-file=production.env ./src/server",
+    "start:prod": "tsx ./src/server",
     "start:watch": "tsx watch --env-file=.env  ./src/server",
     "publish:staging": "tsx --env-file=.env ./scripts/publishFeedGen.ts",
-    "publish:prod": "tsx --env-file=production.env ./scripts/publishFeedGen.ts"
+    "publish:prod": "tsx ./scripts/publishFeedGen.ts"
   },
   "dependencies": {
     "@atproto/api": "^0.13.17",
