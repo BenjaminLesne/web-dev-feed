@@ -21,11 +21,11 @@ jetstream.onCreate("app.bsky.feed.post", async (event) => {
   //did:plc:eppiv4du322umyddkvlnvgjp/app.bsky.feed.post/3lbmdyz3kss2e
   const interestScore = standardAlgo({ record });
   if (interestScore > 0) {
-    console.log(
-      "========================created a post!========================",
-    );
-    console.log(`New post: ${event.commit.record.text}`);
-    console.log(temp_url);
+    // console.log(
+    //   "========================created a post!========================",
+    // );
+    // console.log(`New post: ${event.commit.record.text}`);
+    // console.log(temp_url);
     await createPost({ interestScore, uri });
   }
 });
