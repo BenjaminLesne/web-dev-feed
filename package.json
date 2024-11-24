@@ -7,7 +7,7 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "db:migration:generate": "npx drizzle-kit generate",
-    "db:migration:migrate": "npx drizzle-kit migrate",
+    "db:migration:migrate": "NODE_OPTIONS='--import tsx' drizzle-kit migrate",
     "start": "tsx --env-file=.env ./src/server",
     "start:prod": "tsx --env-file=production.env ./src/server",
     "start:watch": "tsx watch --env-file=.env  ./src/server",
