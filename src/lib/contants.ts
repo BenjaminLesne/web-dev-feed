@@ -17,4 +17,4 @@ export const FEED = {
 
 export const FEED_GENERATOR = {
   did: "did:web:" + env.HOSTNAME,
-};
+} as const;

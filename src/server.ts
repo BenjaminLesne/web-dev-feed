@@ -32,6 +32,22 @@ app.get("/.well-known/did.json", (req, res) => {
   });
 });
 
+// app.get("/.well-known/atproto-did", (req, res) => {
+//   res.send({
+//     "@context": ["https://www.w3.org/ns/did/v1"],
+//     id: FEED_GENERATOR.did,
+//     service: [
+//       {
+//         id: FEED.rkey,
+//         serviceEndpoint: env.API_URL,
+//         type: "BskyFeedGenerator",
+//       },
+//     ],
+//   });
+// });
+
+// atproto-did
+
 app.get("/xrpc/app.bsky.feed.describeFeedGenerator", (req, res) => {
   res.json({
     did: FEED_GENERATOR.did,
