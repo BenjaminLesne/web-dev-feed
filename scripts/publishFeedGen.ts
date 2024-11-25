@@ -1,13 +1,13 @@
 import { AtpAgent, BlobRef } from "@atproto/api";
 import fs from "fs/promises";
-import { HANDLE } from "../src/lib/contants.js";
+import { HANDLE, RECORD_NAME } from "../src/lib/contants.js";
 import { env } from "../src/env.js";
 // import { ids } from "../src/lexicon/lexicons";
 
 const run = async () => {
-  if (!process.env.FEEDGEN_SERVICE_DID && !process.env.FEEDGEN_HOSTNAME) {
-    throw new Error("Please provide a hostname in the .env file");
-  }
+  // if (!process.env.FEEDGEN_SERVICE_DID && !process.env.FEEDGEN_HOSTNAME) {
+  //   throw new Error("Please provide a hostname in the .env file");
+  // }
 
   // const answers = await inquirer.prompt([
   //   {
@@ -68,14 +68,16 @@ const run = async () => {
 
   const handle = HANDLE;
   const password = env.APP_PASSWORD;
-  const recordName = "web-dev";
-  const displayName = "Web dev";
+  const recordName = RECORD_NAME;
+  const displayName = "Web dev testi";
   const description =
     "Open-source web dev feed, showcasing posts based on keywords, likes, and reposts. source code: https://github.com/BenjaminLesne/web-dev-feed";
   const avatar = undefined;
   const service = undefined;
 
-  const feedGenDid = `did:web:${env.HOSTNAME}`;
+  // const feedGenDid = `did:web:${env.HOSTNAME}`;
+  const feedGenDid =
+    "did:web:http://boc48gookcswcoo884o0owck.167.114.2.165.sslip.io";
 
   // const feedGenDid =
   //   process.env.FEEDGEN_SERVICE_DID ??
@@ -104,18 +106,30 @@ const run = async () => {
     avatarRef = blobRes.data.blob;
   }
 
-  await agent.api.com.atproto.repo.putRecord({
+  await agent.api.com.atproto.repo.createRecord({
     repo: agent.session?.did ?? handle,
     collection: "app.bsky.feed.generator",
     rkey: recordName,
     record: {
-      did: feedGenDid,
+      did: env.PUBLISHER_DID,
       displayName: displayName,
       description: description,
       avatar: avatarRef,
       createdAt: new Date().toISOString(),
     },
   });
+  // await agent.api.com.atproto.repo.putRecord({
+  //   repo: agent.session?.did ?? handle,
+  //   collection: "app.bsky.feed.generator",
+  //   rkey: recordName,
+  //   record: {
+  //     did: feedGenDid,
+  //     displayName: displayName,
+  //     description: description,
+  //     avatar: avatarRef,
+  //     createdAt: new Date().toISOString(),
+  //   },
+  // });
 
   console.log("All done 🎉");
 };

@@ -6,6 +6,7 @@ import { db } from "./database/database.js";
 import { postsTable } from "./database/schemas.js";
 import { desc } from "drizzle-orm";
 import { garbageCollectExpiredPostsJob } from "./cron/jobs.js";
+import { RECORD_NAME } from "./lib/contants.js";
 
 const app = express();
 const port = env.SERVER_PORT;
@@ -36,7 +37,7 @@ app.get("/xrpc/app.bsky.feed.describeFeedGenerator", (req, res) => {
     did: env.PUBLISHER_DID,
     feeds: [
       {
-        uri: `at://${env.PUBLISHER_DID}/app.bsky.feed.generator/webDev`,
+        uri: `at://${env.PUBLISHER_DID}/app.bsky.feed.generator/${RECORD_NAME}`,
       },
     ],
   });

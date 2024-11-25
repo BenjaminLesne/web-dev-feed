@@ -5,3 +5,4 @@ export const WANTED_COLLECTIONS = [
   "app.bsky.feed.like" as const,
   "app.bsky.feed.repost" as const,
 ];
+export const RECORD_NAME = "web-dev";
