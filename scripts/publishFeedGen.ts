@@ -1,6 +1,6 @@
 import { AtpAgent, BlobRef } from "@atproto/api";
 import fs from "fs/promises";
-import { HANDLE, RECORD_NAME } from "../src/lib/contants.js";
+import { FEED, FEED_GENERATOR, HANDLE } from "../src/lib/contants.js";
 import { env } from "../src/env.js";
 // import { ids } from "../src/lexicon/lexicons";
 
@@ -68,10 +68,9 @@ const run = async () => {
 
   const handle = HANDLE;
   const password = env.APP_PASSWORD;
-  const recordName = RECORD_NAME;
-  const displayName = "Web dev testi";
-  const description =
-    "Open-source web dev feed, showcasing posts based on keywords, likes, and reposts. source code: https://github.com/BenjaminLesne/web-dev-feed";
+  const recordName = FEED.rkey;
+  const displayName = FEED.name;
+  const description = FEED.description;
   const avatar = undefined;
   const service = undefined;
 
@@ -106,14 +105,40 @@ const run = async () => {
     avatarRef = blobRes.data.blob;
   }
 
-  await agent.api.com.atproto.repo.createRecord({
+  // console.log({
+  //   repo: agent.session?.did ?? handle,
+  //   collection: "app.bsky.feed.generator",
+  //   rkey: recordName,
+  //   record: {
+  //     did: `did:web:http://boc48gookcswcoo884o0owck.167.114.2.165.sslip.io`,
+  //     displayName: displayName,
+  //     description: description,
+  //     avatar: avatarRef,
+  //     createdAt: new Date().toISOString(),
+  //   },
+  // });
+
+  // await agent.api.com.atproto.repo.putRecord({
+  //   repo: "did:plc:biu6jolqrtpjfazvekg6zrah",
+  //   collection: "app.bsky.feed.generator",
+  //   rkey: "web-dev",
+  //   record: {
+  //     did: "did:web:http://boc48gookcswcoo884o0owck.167.114.2.165.sslip.io",
+  //     displayName: "Web dev testi",
+  //     description:
+  //       "Open-source web dev feed, showcasing posts based on keywords, likes, and reposts from the last 48 hours. source code: https://github.com/BenjaminLesne/web-dev-feed",
+  //     avatar: undefined,
+  //     createdAt: "2024-11-25T21:13:32.869Z",
+  //   },
+  // });
+  await agent.api.com.atproto.repo.putRecord({
     repo: agent.session?.did ?? handle,
     collection: "app.bsky.feed.generator",
     rkey: recordName,
     record: {
-      did: env.PUBLISHER_DID,
-      displayName: displayName,
-      description: description,
+      did: FEED_GENERATOR.did,
+      displayName: FEED.name,
+      description: FEED.description,
       avatar: avatarRef,
       createdAt: new Date().toISOString(),
     },

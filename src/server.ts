@@ -6,7 +6,7 @@ import { db } from "./database/database.js";
 import { postsTable } from "./database/schemas.js";
 import { desc } from "drizzle-orm";
 import { garbageCollectExpiredPostsJob } from "./cron/jobs.js";
-import { RECORD_NAME } from "./lib/contants.js";
+import { FEED, FEED_GENERATOR } from "./lib/contants.js";
 
 const app = express();
 const port = env.SERVER_PORT;
@@ -21,10 +21,10 @@ app.get("/health", (req, res) => {
 app.get("/.well-known/did.json", (req, res) => {
   res.json({
     "@context": ["https://www.w3.org/ns/did/v1"],
-    id: env.PUBLISHER_DID,
+    id: FEED_GENERATOR.did,
     service: [
       {
-        id: "#bsky_fg",
+        id: FEED.rkey,
         serviceEndpoint: env.API_URL,
         type: "BskyFeedGenerator",
       },
@@ -34,10 +34,10 @@ app.get("/.well-known/did.json", (req, res) => {
 
 app.get("/xrpc/app.bsky.feed.describeFeedGenerator", (req, res) => {
   res.json({
-    did: env.PUBLISHER_DID,
+    did: FEED_GENERATOR.did,
     feeds: [
       {
-        uri: `at://${env.PUBLISHER_DID}/app.bsky.feed.generator/${RECORD_NAME}`,
+        uri: `at://${FEED_GENERATOR.did}/app.bsky.feed.generator/${FEED.rkey}`,
       },
     ],
   });
