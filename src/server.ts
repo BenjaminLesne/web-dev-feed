@@ -53,7 +53,8 @@ app.get("/xrpc/app.bsky.feed.describeFeedGenerator", (req, res) => {
     did: FEED_GENERATOR.did,
     feeds: [
       {
-        uri: `at://${FEED_GENERATOR.did}/app.bsky.feed.generator/${FEED.rkey}`,
+        // uri: `at://${FEED_GENERATOR.did}/app.bsky.feed.generator/${FEED.rkey}`,
+        uri: `at://${env.PUBLISHER_DID}/app.bsky.feed.generator/${FEED.rkey}`,
       },
     ],
   });

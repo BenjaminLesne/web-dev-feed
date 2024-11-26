@@ -123,7 +123,7 @@ const run = async () => {
   //   collection: "app.bsky.feed.generator",
   //   rkey: "web-dev",
   //   record: {
-  //     did: "did:web:http://boc48gookcswcoo884o0owck.167.114.2.165.sslip.io",
+  //     did: "did:web:boc48gookcswcoo884o0owck.167.114.2.165.sslip.io",
   //     displayName: "Web dev testi",
   //     description:
   //       "Open-source web dev feed, showcasing posts based on keywords, likes, and reposts from the last 48 hours. source code: https://github.com/BenjaminLesne/web-dev-feed",
@@ -131,7 +131,7 @@ const run = async () => {
   //     createdAt: "2024-11-25T21:13:32.869Z",
   //   },
   // });
-  await agent.api.com.atproto.repo.putRecord({
+  const data = {
     repo: agent.session?.did ?? handle,
     collection: "app.bsky.feed.generator",
     rkey: recordName,
@@ -142,7 +142,9 @@ const run = async () => {
       avatar: avatarRef,
       createdAt: new Date().toISOString(),
     },
-  });
+  };
+  console.log(data);
+  await agent.api.com.atproto.repo.putRecord(data);
   // await agent.api.com.atproto.repo.putRecord({
   //   repo: agent.session?.did ?? handle,
   //   collection: "app.bsky.feed.generator",
