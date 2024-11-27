@@ -68,15 +68,15 @@ const run = async () => {
 
   const handle = HANDLE;
   const password = env.APP_PASSWORD;
-  const recordName = FEED.rkey;
-  const displayName = FEED.name;
-  const description = FEED.description;
+  // const recordName = FEED.rkey;
+  // const displayName = FEED.name;
+  // const description = FEED.description;
   const avatar = undefined;
   const service = undefined;
 
   // const feedGenDid = `did:web:${env.HOSTNAME}`;
-  const feedGenDid =
-    "did:web:http://boc48gookcswcoo884o0owck.167.114.2.165.sslip.io";
+  // const feedGenDid =
+  //   "did:web:http://boc48gookcswcoo884o0owck.167.114.2.165.sslip.io";
 
   // const feedGenDid =
   //   process.env.FEEDGEN_SERVICE_DID ??
@@ -134,7 +134,7 @@ const run = async () => {
   const data = {
     repo: agent.session?.did ?? handle,
     collection: "app.bsky.feed.generator",
-    rkey: recordName,
+    rkey: FEED.rkey,
     record: {
       did: FEED_GENERATOR.did,
       displayName: FEED.name,

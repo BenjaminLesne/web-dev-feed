@@ -17,7 +17,7 @@ garbageCollectExpiredPostsJob.start();
 app.get("/health", (req, res) => {
   res.send("Hello world");
 });
-
+// https://boc48gookcswcoo884o0owck.167.114.2.165.sslip.io/.well-known/did.json
 app.get("/.well-known/did.json", (req, res) => {
   res.json({
     "@context": ["https://www.w3.org/ns/did/v1"],
