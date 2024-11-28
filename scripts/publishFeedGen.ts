@@ -106,7 +106,7 @@ const run = async () => {
   }
 
   // LAST UPDATE:
-  // {
+  // { /* json */
   //   repo: 'did:plc:biu6jolqrtpjfazvekg6zrah',
   //   collection: 'app.bsky.feed.generator',
   //   rkey: 'web-dev',
