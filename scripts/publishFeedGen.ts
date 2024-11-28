@@ -105,18 +105,19 @@ const run = async () => {
     avatarRef = blobRes.data.blob;
   }
 
-  // console.log({
-  //   repo: agent.session?.did ?? handle,
-  //   collection: "app.bsky.feed.generator",
-  //   rkey: recordName,
+  // LAST UPDATE:
+  // {
+  //   repo: 'did:plc:biu6jolqrtpjfazvekg6zrah',
+  //   collection: 'app.bsky.feed.generator',
+  //   rkey: 'web-dev',
   //   record: {
-  //     did: `did:web:http://boc48gookcswcoo884o0owck.167.114.2.165.sslip.io`,
-  //     displayName: displayName,
-  //     description: description,
-  //     avatar: avatarRef,
-  //     createdAt: new Date().toISOString(),
-  //   },
-  // });
+  //     did: 'did:web:api.webdevfeed.online',
+  //     displayName: 'Web dev testi',
+  //     description: 'Open-source web dev feed, showcasing posts based on keywords, likes, and reposts from the last 48 hours. source code: https://github.com/BenjaminLesne/web-dev-feed',
+  //     avatar: undefined,
+  //     createdAt: '2024-11-28T13:29:18.526Z'
+  //   }
+  // }
 
   // await agent.api.com.atproto.repo.putRecord({
   //   repo: "did:plc:biu6jolqrtpjfazvekg6zrah",
