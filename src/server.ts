@@ -31,7 +31,7 @@ app.get('/.well-known/did.json', (req, res) => {
     service: [
       {
         id: '#bsky_fg',
-        serviceEndpoint: process.env.API_URL as string,
+        serviceEndpoint: FEED_GENERATOR.endpoint,
         type: 'BskyFeedGenerator',
       },
     ],

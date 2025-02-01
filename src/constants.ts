@@ -1,5 +1,6 @@
 export const FEED_GENERATOR = {
     did: 'did:web:' + (process.env.HOSTNAME as string),
+    endpoint: `https://${(process.env.HOSTNAME as string)}`
   } as const
   
   export const WEB_DEV_FEED = {
