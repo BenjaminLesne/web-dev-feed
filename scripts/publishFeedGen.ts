@@ -1,9 +1,10 @@
+import 'dotenv/config'
 import { AtpAgent, BlobRef } from '@atproto/api'
 import fs from 'fs/promises'
 import { FEED_GENERATOR, WEB_DEV_FEED } from '../src/constants.js'
 
 const run = async () => {
-  const handle = "johndoe.bsky.social"
+  const handle = "benjaminlesne.bsky.social"
   const avatar = undefined as string | undefined
 
   const agent = new AtpAgent({

@@ -3,7 +3,7 @@ export const FEED_GENERATOR = {
   } as const
   
   export const WEB_DEV_FEED = {
-    name: 'My feed name displayed to users',
+    name: "Ben's web dev feed",
     description: 'This is my feed description that is visible in Bluesky',
     rkey: 'web-dev',
   } as const

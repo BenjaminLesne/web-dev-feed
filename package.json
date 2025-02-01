@@ -26,6 +26,7 @@
   "scripts": {
     "dev": "tsx watch ./src/server.ts",
     "start": "tsx ./src/server.ts",
+    "publish": "tsx ./scripts/publishFeedGen.ts",
     "test": ""
   },
   "devDependencies": {

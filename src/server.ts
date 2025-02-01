@@ -4,6 +4,7 @@ import { db } from './database/database.js'
 import { postsTable } from './database/schemas.js'
 import { jetstream } from './jetstream.js'
 import { desc } from 'drizzle-orm'
+import { FEED_GENERATOR, WEB_DEV_FEED } from './constants.js'
 
 jetstream.start()
 
@@ -20,6 +21,33 @@ app.get('/xrpc/app.bsky.feed.getFeedSkeleton', async (req, res) => {
 
   res.json({
     feed,
+  })
+})
+
+app.get('/.well-known/did.json', (req, res) => {
+  res.json({
+    '@context': ['https://www.w3.org/ns/did/v1'],
+    id: FEED_GENERATOR.did,
+    service: [
+      {
+        id: '#bsky_fg',
+        serviceEndpoint: process.env.API_URL as string,
+        type: 'BskyFeedGenerator',
+      },
+    ],
+  })
+})
+
+app.get('/xrpc/app.bsky.feed.describeFeedGenerator', (req, res) => {
+  res.json({
+    did: FEED_GENERATOR.did,
+    feeds: [
+      {
+        uri: `at://${process.env.PUBLISHER_DID as string}/app.bsky.feed.generator/${
+          WEB_DEV_FEED.rkey
+        }`,
+      },
+    ],
   })
 })
 
