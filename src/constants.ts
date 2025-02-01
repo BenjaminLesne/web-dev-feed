@@ -3,8 +3,6 @@ export const FEED_GENERATOR = {
   } as const
   
   export const WEB_DEV_FEED = {
-    id: 'web-dev',
-    did: 'did:web:' + (process.env.HOSTNAME as string),
     name: 'My feed name displayed to users',
     description: 'This is my feed description that is visible in Bluesky',
     rkey: 'web-dev',

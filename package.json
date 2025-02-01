@@ -24,7 +24,8 @@
   },
   "contributors": [],
   "scripts": {
-    "dev": "",
+    "dev": "tsx watch ./src/server.ts",
+    "start": "tsx ./src/server.ts",
     "test": ""
   },
   "devDependencies": {
