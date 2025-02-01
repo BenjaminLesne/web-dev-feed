@@ -27,6 +27,7 @@
     "dev": "tsx watch ./src/server.ts",
     "start": "tsx ./src/server.ts",
     "publish": "tsx ./scripts/publishFeedGen.ts",
+    "db:push": "npx drizzle-kit push",
     "test": ""
   },
   "devDependencies": {
