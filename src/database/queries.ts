@@ -1,4 +1,4 @@
-import { lt } from "drizzle-orm";
+import { gte } from "drizzle-orm";
 import { db } from "./database.js";
 import { postsTable } from "./schemas.js";
 
@@ -7,5 +7,5 @@ export const deleteOldPosts = async () => {
 
   await db
     .delete(postsTable)
-    .where(lt(postsTable.createdAt, fortyEightHoursAgo));
+    .where(gte(postsTable.createdAt, fortyEightHoursAgo));
 };
