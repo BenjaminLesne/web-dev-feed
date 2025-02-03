@@ -3,47 +3,7 @@ import { postsTable } from './database/schemas.js';
 import type { CommitCreate } from "@skyware/jetstream";
 import { Jetstream } from "@skyware/jetstream";
 import WebSocket from "ws";
-
-const BLOCK_LIST = ["porn" ,"gore", "spam", "sexual", "nudity"];
-const ALLOWED_REGEX = /\bjavascript\b/i;
-
-type StandardAlgoArgs = {
-  record: CommitCreate<"app.bsky.feed.post">["record"];
-};
-export function standardAlgo({ record }: StandardAlgoArgs) {
-  let score = 0;
-  let denied = false;
-
-  switch (record.$type) {
-    case "app.bsky.feed.post": {
-      record.labels?.values.forEach((value) => {
-        if (BLOCK_LIST.includes(value.val)) {
-          denied = true;
-        }
-      });
-
-      if (denied) {
-        return 0;
-      }
-
-      const isAboutWebdev = ALLOWED_REGEX.test(record.text);
-      if (isAboutWebdev) {
-        score = score + 1;
-
-        if (record.embed) {
-          score = score + 1;
-        }
-      }
-
-      break;
-    }
-
-    default:
-      break;
-  }
-
-  return score;
-}
+import { standardAlgo } from './algorithms/standard/standard.js';
 
 export const jetstream = new Jetstream({
   wantedCollections: ["app.bsky.feed.post"],
