@@ -5,7 +5,9 @@ import { postsTable } from './database/schemas.js'
 import { jetstream } from './jetstream.js'
 import { desc } from 'drizzle-orm'
 import { FEED_GENERATOR, WEB_DEV_FEED } from './constants.js'
+import { deleteOldPostsCronJob } from './cron/deleteOldPosts.js'
 
+deleteOldPostsCronJob.start()
 jetstream.start()
 
 const app = express()
@@ -16,8 +18,9 @@ app.get('/xrpc/app.bsky.feed.getFeedSkeleton', async (req, res) => {
       post: postsTable.uri,
     })
     .from(postsTable)
-    .orderBy(desc(postsTable.interestScore))
-    .limit(10)
+    .orderBy(desc(postsTable.interestScore), 
+    desc(postsTable.createdAt))
+    .limit(30)
 
   res.json({
     feed,

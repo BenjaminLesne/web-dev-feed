@@ -4,7 +4,7 @@ import type { CommitCreate } from "@skyware/jetstream";
 import { Jetstream } from "@skyware/jetstream";
 import WebSocket from "ws";
 
-const BLOCK_LIST = ["check doc for NSFW labels", "label2", "label3"];
+const BLOCK_LIST = ["porn" ,"gore", "spam", "sexual", "nudity"];
 const ALLOWED_REGEX = /\bjavascript\b/i;
 
 type StandardAlgoArgs = {
